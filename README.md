@@ -16,6 +16,7 @@ To run the tests:
 
 ``
 npm install automerge
+
 node .\graphtest.js
 ``
 
