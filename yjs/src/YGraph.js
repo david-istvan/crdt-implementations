@@ -10,10 +10,13 @@
 
 import * as Y from 'yjs'
 
+
+/**
+ * @todo extend Y.AbstractType and implement graph methods
+*/
 export class YGraph extends Y.Array{
     
-    constructor(data){
+    constructor(){
         super()
-        this._data = data
     }
 }
