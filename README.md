@@ -14,11 +14,10 @@ CRDT implementations for comparing the CollabServer with state-of-the-practice C
 
 To run the tests:
 
-``
+```
 npm install automerge
-
 node .\graphtest.js
-``
+```
 
 
 # Yjs
