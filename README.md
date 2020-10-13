@@ -22,3 +22,10 @@ node .\graphtest.js
 
 # Yjs
 * [Yjs GitHub repo](https://github.com/yjs/yjs)
+
+```
+npm install yjs
+npm install webpack webpack-cli
+npm run build
+npm start
+```
