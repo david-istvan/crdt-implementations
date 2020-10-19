@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2020
  *
- * @summary CRDT Graph capability extension for the Yjs session primitive (Doc)
+ * @summary CRDT Graph capability extension for the Yjs session primitive (Doc).
  * @author Istvan David <hello@istvandavid.com>
  */
  
