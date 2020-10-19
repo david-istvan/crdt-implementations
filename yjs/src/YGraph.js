@@ -1,22 +1,57 @@
 /**
  * Copyright (c) 2020
  *
- * @summary CRDT Graph abstraction for Yjs
+ * @summary Rich CRDT Graph abstraction for Yjs.
  * @author Istvan David <hello@istvandavid.com>
- *
- * Created at     : 2020-10-12
- * Last modified  : 2020-10-13
  */
 
 import * as Y from 'yjs'
 
+import { YAbstractGraph } from './YAbstractGraph.js'
 
-/**
- * @todo extend Y.AbstractType and implement graph methods
-*/
-export class YGraph extends Y.Array{
+export class YGraph extends YAbstractGraph {
     
-    constructor(){
-        super()
+    constructor (entries) {
+        super(entries)
+    }
+
+    addVertex(vertexID){
+        //TODO
+    }
+    
+    getVertices(){
+        return this.data.vertices;
+    }
+
+    queryVertex(vertexID){
+        return this.data.vertices.filter(item => item.id === vertexID)
+    }
+    
+    queryEdge(source, destination){
+        //TODO
+    }
+    
+    //CollabServer: removeVertex(vertexID, timestamp){}
+    removeVertex(vertexID){
+        //TODO
+    }
+    
+    //CollabServer
+    clearVertices(){
+        //TODO
+    }
+    
+    getEdgesFrom(vertexId){
+        //TODO
+    }
+    
+    //CollabServer: addEdge(source, destination, timestamp){}
+    addEdge(source, destination){
+        //TODO
+    }
+    
+    //CollabServer: removeEdge(source, destination, timestamp){}
+    removeEdge(source, destination, timestamp){
+        //TODO
     }
 }

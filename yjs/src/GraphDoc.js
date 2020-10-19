@@ -3,9 +3,6 @@
  *
  * @summary CRDT Graph capability extension for the Yjs session primitive (Doc)
  * @author Istvan David <hello@istvandavid.com>
- *
- * Created at     : 2020-10-12
- * Last modified  : 2020-10-13
  */
  
 import * as Y from 'yjs'

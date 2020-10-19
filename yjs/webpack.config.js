@@ -4,6 +4,7 @@ module.exports = {
   entry: {
     app: [
       './src/YGraph.js',
+      './src/YAbstractGraph.js',
       './src/GraphDoc.js',
       './src/graphtest.js',
     ],
