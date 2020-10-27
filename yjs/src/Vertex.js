@@ -15,6 +15,14 @@ export class Vertex{
         return this.id
     }
     
+    setProperty(property){
+        this.property = property
+    }
+    
+    getProperty(){
+        return this.property
+    }
+    
     equals(vertex){
         return this.id === vertex.id
     }
