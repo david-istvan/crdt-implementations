@@ -6,6 +6,7 @@ module.exports = {
       './src/ModelServer.js',
       './src/GraphDoc.js',
       './src/YGraph.js',
+      './src/Vertex.js',
       './src/YAbstractGraph.js',
       //'./src/graphtest.js',
       './src/modelservertest.js'

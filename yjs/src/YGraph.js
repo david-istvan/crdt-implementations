@@ -8,6 +8,7 @@
 import * as Y from 'yjs'
 
 import { YAbstractGraph } from './YAbstractGraph.js'
+import { Vertex } from './Vertex.js';
 
 export class YGraph extends YAbstractGraph {
     
@@ -16,54 +17,83 @@ export class YGraph extends YAbstractGraph {
     }
 
     addVertex(vertexID){
-        if(this.has(vertexID)){
+        if(this.findKey(vertexID) !== undefined){
+            console.log('ERROR: Vertex with ID "', vertexID, '" already exists')
             return
         }
-        this.set(vertexID, [])
+        let vertex = new Vertex(vertexID)
+        this.set(vertex, [])
     }
     
     getVertices(){
         return this.keys();
     }
+    
+    findKey(vertexID){
+        return Array.from(this.keys()).find(k => k.getID() === vertexID)
+    }
 
     queryVertex(vertexID){
-        return [vertexID, this.get(vertexID)]
+        let key = this.findKey(vertexID)
+        if(key === undefined){
+            return undefined
+        }
+        return [key, this.get(key)]
     }
     
     queryEdge(source, destination){
-        return this.get(source).filter(item => item === destination).length>0
+        let key = this.findKey(source)
+        if(key === undefined){
+            return
+        }
+        return this.get(key).filter(vertex => vertex.getID() === destination).length>0
     }
     
     //CollabServer: removeVertex(vertexID, timestamp){}
     removeVertex(vertexID){
-        this.delete(vertexID)
+        let key = this.findKey(vertexID)
+        this.delete(key)
     }
     
     //CollabServer
     clearVertices(){
-        Array.from(this.getVertices()).forEach(vertexID => this.removeVertex(vertexID))
+        Array.from(this.getVertices()).forEach(vertex => this.delete(vertex))
     }
     
     getEdgesFrom(vertexID){
-        return Array.from(this.get(vertexID).values())
+        let key = this.findKey(vertexID)
+        return Array.from(this.get(key).values())
     }
     
     //CollabServer: addEdge(source, destination, timestamp){}
     addEdge(source, destination){
-        this.get(source).push(destination)
+        let key = this.findKey(source)
+        if(key === undefined){
+            console.log('ERROR: source does not exist.')
+            return
+        }
+        let value = this.findKey(destination)
+        if(value === undefined){
+            console.log('ERROR: destination does not exist.')
+            return
+        }
+        this.get(key).push(value)
     }
     
     //CollabServer: removeEdge(source, destination, timestamp){}
     removeEdge(source, destination){
-        let s = this.get(source)
-        if(s === undefined){
+        let key = this.findKey(source)
+        if(key === undefined){
             return
         }
-        let i = s.indexOf(destination)
-        //console.log(i)
+        let value = this.findKey(destination)
+        if(value === undefined){
+            return
+        }
+        let i = this.get(key).indexOf(value)
         if(i <= -1){
             return
         }
-        this.get(source).splice(i, 1)
+        this.get(key).splice(i, 1)
     }
 }

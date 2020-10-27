@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) 2020
+ *
+ * @summary Local model repository functionality.
+ * @author Istvan David <hello@istvandavid.com>
+ */
+
 import { GraphDoc } from './GraphDoc.js';
 import { YGraph } from './YGraph.js';
 
