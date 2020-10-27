@@ -3,10 +3,12 @@ const path = require('path')
 module.exports = {
   entry: {
     app: [
+      './src/ModelServer.js',
+      './src/GraphDoc.js',
       './src/YGraph.js',
       './src/YAbstractGraph.js',
-      './src/GraphDoc.js',
-      './src/graphtest.js',
+      //'./src/graphtest.js',
+      './src/modelservertest.js'
     ],
   },
   output: {

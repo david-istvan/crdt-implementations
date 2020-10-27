@@ -14,12 +14,15 @@ export class GraphDoc extends Y.Doc{
         super();
         this._data = data;
     }
-    
+
     hello(){
         console.log(this._data)
     }
-    
-    getGraph (name = '') {
-        return this.get(name, YGraph)
+
+    getGraph (name = '') { /* singleton graph intance*/
+        if(this._graphInstance === undefined){
+            this._graphInstance = this.get(name, YGraph)
+        }
+        return this._graphInstance
     }
 }

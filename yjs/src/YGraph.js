@@ -27,11 +27,11 @@ export class YGraph extends YAbstractGraph {
     }
 
     queryVertex(vertexID){
-        return this.get(vertexID)
+        return [vertexID, this.get(vertexID)]
     }
     
     queryEdge(source, destination){
-        return this.queryVertex(source).filter(item => item === destination)
+        return this.get(source).filter(item => item === destination).length>0
     }
     
     //CollabServer: removeVertex(vertexID, timestamp){}
@@ -45,22 +45,22 @@ export class YGraph extends YAbstractGraph {
     }
     
     getEdgesFrom(vertexID){
-        return Array.from(this.queryVertex(vertexID).values())
+        return Array.from(this.get(vertexID).values())
     }
     
     //CollabServer: addEdge(source, destination, timestamp){}
     addEdge(source, destination){
-        this.queryVertex(source).push(destination)
+        this.get(source).push(destination)
     }
     
     //CollabServer: removeEdge(source, destination, timestamp){}
     removeEdge(source, destination){
-        let s = this.queryVertex(source)
+        let s = this.get(source)
         if(s === undefined){
             return
         }
         let i = s.indexOf(destination)
-        console.log(i)
+        //console.log(i)
         if(i <= -1){
             return
         }
