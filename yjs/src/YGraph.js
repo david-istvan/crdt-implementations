@@ -16,42 +16,54 @@ export class YGraph extends YAbstractGraph {
     }
 
     addVertex(vertexID){
-        //TODO
+        if(this.has(vertexID)){
+            return
+        }
+        this.set(vertexID, [])
     }
     
     getVertices(){
-        return this.data.vertices;
+        return this.keys();
     }
 
     queryVertex(vertexID){
-        return this.data.vertices.filter(item => item.id === vertexID)
+        return this.get(vertexID)
     }
     
     queryEdge(source, destination){
-        //TODO
+        return this.queryVertex(source).filter(item => item === destination)
     }
     
     //CollabServer: removeVertex(vertexID, timestamp){}
     removeVertex(vertexID){
-        //TODO
+        this.delete(vertexID)
     }
     
     //CollabServer
     clearVertices(){
-        //TODO
+        Array.from(this.getVertices()).forEach(vertexID => this.removeVertex(vertexID))
     }
     
-    getEdgesFrom(vertexId){
-        //TODO
+    getEdgesFrom(vertexID){
+        return Array.from(this.queryVertex(vertexID).values())
     }
     
     //CollabServer: addEdge(source, destination, timestamp){}
     addEdge(source, destination){
-        //TODO
+        this.queryVertex(source).push(destination)
     }
     
     //CollabServer: removeEdge(source, destination, timestamp){}
-    removeEdge(source, destination, timestamp){
-        //TODO
+    removeEdge(source, destination){
+        let s = this.queryVertex(source)
+        if(s === undefined){
+            return
+        }
+        let i = s.indexOf(destination)
+        console.log(i)
+        if(i <= -1){
+            return
+        }
+        this.get(source).splice(i, 1)
     }
 }
