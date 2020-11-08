@@ -13,6 +13,8 @@ export class Node extends Y.Map{
         super(undefined)
         this.name = name
         this.generateID()
+        this.type = undefined
+        this.subTypes = new Set()
     }
     
     generateID() {
@@ -23,6 +25,32 @@ export class Node extends Y.Map{
 
     getID(){
         return this.id
+    }
+    
+    setName(){
+        this.name = name
+    }
+    
+    getName(){
+        return this.name
+    }
+    
+    setType(typeNode){
+        this.typedBy = typeNode
+        typeNode.getSubtypes().add(this)
+    }
+    
+    untype(){
+        this.typedBy.getSubtypes().delete(this)
+        this.typedBy = undefined
+    }
+    
+    getType(){
+        return this.typedBy
+    }
+    
+    getSubtypes(){
+        return this.subTypes
     }
     
     setAttribute(name, value){

@@ -13,7 +13,8 @@ module.exports = {
       './src/mindmap/MindmapModel.js',
       './src/mindmap/Mindmap.js',
       './src/mindmap/Topic.js',
-      './src/mindmap/test.js'
+      './src/typetests/typetests.js'
+      //'./src/mindmap/test.js'
     ],
   },
   output: {
