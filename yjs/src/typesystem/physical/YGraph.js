@@ -1,40 +1,39 @@
 /**
  * Copyright (c) 2020
  *
- * @summary Rich CRDT Graph abstraction for Yjs.
+ * @summary CRDT Graph specialization for the highest physical type level. Currently not in use. Left here as a placeholder for future considerations to serve as the base physical type to the deepest logical type level.
  * @author Istvan David <hello@istvandavid.com>
  */
 
 import * as Y from 'yjs'
 
-import { YAbstractGraph } from './YAbstractGraph.js'
-import { Vertex } from './Vertex.js';
+import { Entity } from '../logical/Entity.js';
 
-export class YGraph extends YAbstractGraph {
+export class YGraph extends Y.Map {
     
-    constructor (entries) {
+    constructor(entries) {
         super(entries)
     }
 
-    addVertex(vertexID){
-        if(this.findKey(vertexID) !== undefined){
-            console.log('ERROR: Vertex with ID "', vertexID, '" already exists')
+    addEntity(entityID){
+        if(this.findKey(entityID) !== undefined){
+            console.log('ERROR: Vertex with ID "', entityID, '" already exists')
             return
         }
-        let vertex = new Vertex(vertexID)
-        this.set(vertex, [])
+        let entity = new Vertex(entityID)
+        this.set(entity, [])
     }
     
-    getVertices(){
+    getEntities(){
         return this.keys();
     }
     
-    findKey(vertexID){
-        return Array.from(this.keys()).find(k => k.getID() === vertexID)
+    findKey(entityID){
+        return Array.from(this.keys()).find(k => k.getID() === entityID)
     }
 
-    queryVertex(vertexID){
-        let key = this.findKey(vertexID)
+    queryVertex(entityID){
+        let key = this.findKey(entityID)
         if(key === undefined){
             return undefined
         }
@@ -46,22 +45,22 @@ export class YGraph extends YAbstractGraph {
         if(key === undefined){
             return
         }
-        return this.get(key).filter(vertex => vertex.getID() === destination).length>0
+        return this.get(key).filter(entity => entity.getID() === destination).length>0
     }
     
-    //CollabServer: removeVertex(vertexID, timestamp){}
-    removeVertex(vertexID){
-        let key = this.findKey(vertexID)
+    //CollabServer: removeVertex(entityID, timestamp){}
+    removeVertex(entityID){
+        let key = this.findKey(entityID)
         this.delete(key)
     }
     
     //CollabServer
-    clearVertices(){
-        Array.from(this.getVertices()).forEach(vertex => this.delete(vertex))
+    clearEntities(){
+        Array.from(this.getEntities()).forEach(entity => this.delete(entity))
     }
     
-    getEdgesFrom(vertexID){
-        let key = this.findKey(vertexID)
+    getEdgesFrom(entityID){
+        let key = this.findKey(entityID)
         return Array.from(this.get(key).values())
     }
     

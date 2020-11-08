@@ -1,12 +1,12 @@
 /**
  * Copyright (c) 2020
  *
- * @summary CRDT Graph capability extension for the Yjs session primitive (Doc).
+ * @summary CRDT Graph capability extension for the Yjs session primitive (Doc). Currently not in use.
  * @author Istvan David <hello@istvandavid.com>
  */
  
 import * as Y from 'yjs'
-import { YGraph } from './YGraph.js'
+import { YGraph } from '../typesystem/physical/YGraph.js'
 
 export class GraphDoc extends Y.Doc{
     

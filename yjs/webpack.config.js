@@ -3,13 +3,17 @@ const path = require('path')
 module.exports = {
   entry: {
     app: [
-      './src/ModelServer.js',
-      './src/GraphDoc.js',
-      './src/YGraph.js',
-      './src/Vertex.js',
-      './src/YAbstractGraph.js',
-      //'./src/graphtest.js',
-      './src/modelservertest.js'
+      './src/typesystem/logical/Node.js',
+      './src/typesystem/logical/Model.js',
+      './src/typesystem/logical/Entity.js',
+      './src/typesystem/logical/Relationship.js',
+      //'./src/distributed/ModelServer.js',
+      //'./src/distributed/modelservertest.js',
+      //'./src/distributed/synctest.js'
+      './src/mindmap/MindmapModel.js',
+      './src/mindmap/Mindmap.js',
+      './src/mindmap/Topic.js',
+      './src/mindmap/test.js'
     ],
   },
   output: {
