@@ -26,17 +26,17 @@ clientDoc.on('update', update => {
   Y.applyUpdate(serverDoc, update)
 })
 
-console.log('hello2')
+//console.log('hello2')
 
 const mindmap = new MindMap('myMindmap')
-console.log('hello3')
+//console.log('hello3')
 
 clientDoc.addModel(mindmap)
-console.log('hello4')
+//console.log('hello4')
 const centralTopic = new CentralTopic('myCentralTopic')
-console.log('hello4.5')
+//console.log('hello4.5')
 clientDoc.addEntity(centralTopic)
-console.log('hello5')
+//console.log('hello5')
 centralTopic.setAttribute('theme', 'general')
 centralTopic.setAttribute('priority', 'low')
 
@@ -47,14 +47,14 @@ console.log('serverDoc')
 console.log(serverDoc.getEntities().get('myCentralTopic').get('theme'))
 */
 
-console.log('hello6')
+//console.log('hello6')
 
 const centralTopicLink = new MindMap_CentralTopic_topic(mindmap, centralTopic)
 
-console.log('hello7')
+//console.log('hello7')
 
 clientDoc.addRelationship(centralTopicLink)
-console.log('hello8')
+//console.log('hello8')
 
 /*
 console.log('Client doc relationships:')
@@ -99,11 +99,12 @@ function logModel(side){
         
         console.log('>Model ', serverDoc.getModel().get('name'))
         for (let [key, value] of serverDoc.getEntities()) {
-            console.log(key) //TODO: crashes here, to be continued...
+            //console.log(key)
             let relationship = serverDoc.findRelationship(serverDoc.getModel().get('name'), key)
-            //console.log(relationship)
+            //console.log(relationship.get('name'))
+            //console.log(relationship.get('isAggregation'))
             if(relationship != undefined){
-                console.log('\t', (relationship.isAggregation() ? '<>' : ''), '---[', relationship.get('name'), ']--->', key);
+                console.log('\t', (relationship.get('isAggregation') ? '<>' : ''), '---[', relationship.get('name'), ']--->', key);
             }
         }
         for (let [k1, v1] of serverDoc.getEntities()) {
@@ -116,7 +117,7 @@ function logModel(side){
                 let relationship = serverDoc.findRelationship(k1, k2)
                 //console.log(relationship)
                 if(relationship != undefined){
-                    console.log('\t', (relationship.isAggregation() ? '<>' : ''), '---[', relationship.get('name'), ']--->', k2);
+                    console.log('\t', (relationship.get('isAggregation') ? '<>' : ''), '---[', relationship.get('name'), ']--->', k2);
                 }
             }
         }
@@ -128,8 +129,9 @@ function logModel(side){
 
 
 logModel('client')
+logModel('server')
 
-console.log('ADDING MARKER')
+console.log('\nADDING MARKER\n')
 
 const marker = new Marker()
 clientDoc.addEntity(marker)
@@ -139,5 +141,13 @@ const markerLink2 = new Topic_Marker_marker(centralTopic, marker)
 clientDoc.addRelationship(markerLink2)
 
 logModel('client')
-
 logModel('server')
+
+/*
+console.log('===============================================')
+console.log(clientDoc.getModel().getName())
+console.log(serverDoc.getModel().get('name'))
+console.log('===============================================')
+console.log(clientDoc.getEntities())
+console.log(serverDoc.getEntities())
+*/
